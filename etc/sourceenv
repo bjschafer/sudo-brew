@@ -1,0 +1,5 @@
+export USER=_brew
+export HOME=/opt/homebrew
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+export TMPDIR=$(getconf DARWIN_USER_TEMP_DIR)
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.pmartin.homebrew.permissions</string>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>GroupName</key>
+	<string>_brew</string>
+	<key>WorkingDirectory</key>
+	<string>/opt/homebrew</string>
+	<key>StandardOutPath</key>
+	<string>/opt/homebrew/Library/Logs/brew_permissions_out.log</string>
+	<key>StandardErrorPath</key>
+	<string>/opt/homebrew/Library/Logs/brew_permissions_err.log</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/libexec/brew_permissions.sh</string>
+	</array>
+	<key>WatchPaths</key>
+	<array>
+		<string>/usr/local/bin</string>
+		<string>/usr/local/Cellar</string>
+		<string>/opt/homebrew/Library/Logs/brew_out.log</string>
+		<string>/opt/homebrew/Library/Logs/brew_out.log.0.bz2</string>
+		<string>/opt/homebrew/Library/Logs/brew_out.log.1.bz2</string>
+		<string>/opt/homebrew/Library/Logs/brew_out.log.2.bz2</string>
+		<string>/opt/homebrew/Library/Logs/brew_out.log.3.bz2</string>
+		<string>/opt/homebrew/Library/Logs/brew_err.log</string>
+		<string>/opt/homebrew/Library/Logs/brew_err.log.0.bz2</string>
+		<string>/opt/homebrew/Library/Logs/brew_err.log.1.bz2</string>
+		<string>/opt/homebrew/Library/Logs/brew_err.log.2.bz2</string>
+		<string>/opt/homebrew/Library/Logs/brew_err.log.3.bz2</string>
+	</array>
+	<key>Nice</key>
+	<integer>1</integer>
+	<key>ProcessType</key>
+	<string>Background</string>
+	<key>LowPriorityIO</key>
+	<true/>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+	</dict>
+</dict>
+</plist>
