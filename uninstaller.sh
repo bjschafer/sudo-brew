@@ -1,5 +1,15 @@
 #!/bin/bash
 
+function check_root {
+    if [ "$EUID" -eq "0" ]; then
+	    echo "running as root."
+    else
+	    echo "Root authentication required. (Rerun with sudo)." 1>&2
+	    exit 1
+    fi
+}
+check_root
+
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
 
 rm -rf /opt/homebrew*
