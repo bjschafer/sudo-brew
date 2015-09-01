@@ -228,25 +228,42 @@ function configure_homebrew {
     fi
 }
 
-function create_aliases {
+# $1 should be path to global shellrc file
+function create_aliases_sub {
     alias brew='/opt/homebrew/bin/brew.sh'
 
-    bashrc='/etc/bashrc'
-    if [ -z "$(grep "alias brew=" ${bashrc})" ]; then
-        echo "alias brew='/opt/homebrew/bin/brew.sh'" >> ${bashrc}
+    shellrc=$1
+
+    if [ ! -f "$shellrc" ]; then
+	    echo >> $shellrc
     fi
 
-    if [ -z "$(grep "alias brew-cask=" ${bashrc})" ]; then
-        echo "alias brew-cask='/opt/homebrew/bin/brew-cask.sh'" >> ${bashrc}
+    if [ -z "$(grep "alias brew=" ${shellrc})" ]; then
+        echo "alias brew='/opt/homebrew/bin/brew.sh'" >> ${shellrc}
     fi
 
-    if [ -z "$(grep "alias pip=" ${bashrc})" ]; then
-        echo "alias pip='/opt/homebrew/bin/pip.sh'" >> ${bashrc}
+    if [ -z "$(grep "alias brew-cask=" ${shellrc})" ]; then
+        echo "alias brew-cask='/opt/homebrew/bin/brew-cask.sh'" >> ${shellrc}
     fi
 
-    if [ -z "$(grep "alias gem=" ${bashrc})" ]; then
-        echo "alias gem='/opt/homebrew/bin/gem.sh'" >> ${bashrc}
+    if [ -z "$(grep "alias pip=" ${shellrc})" ]; then
+        echo "alias pip='/opt/homebrew/bin/pip.sh'" >> ${shellrc}
     fi
+
+    if [ -z "$(grep "alias gem=" ${shellrc})" ]; then
+        echo "alias gem='/opt/homebrew/bin/gem.sh'" >> ${shellrc}
+    fi
+}
+
+function create_aliases {
+    if hash bash 2>/dev/null; then
+	    create_aliases_sub "/etc/bashrc"
+    fi
+
+    if hash zsh 2>/dev/null; then
+	    create_aliases_sub "/etc/zshrc"
+    fi
+
 }
 
 check_root
